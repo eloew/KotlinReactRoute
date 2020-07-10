@@ -1,6 +1,5 @@
-package view
+package view.components
 
-import kotlinx.coroutines.CoroutineScope
 import react.*
 import react.dom.*
 

@@ -12,20 +12,26 @@ repositories {
     jcenter()
 }
 
+val reactRouterDomVersion = "5.1.2"
+val kotlinWrappersVersion = "pre.105-kotlin-1.3.72"
+
 dependencies {
     implementation(kotlin("stdlib-js"))
     testCompile("junit", "junit", "4.12")
 
     //React, React DOM + Wrappers
-    implementation("org.jetbrains:kotlin-react:16.13.0-pre.94-kotlin-1.3.70")
-    implementation("org.jetbrains:kotlin-react-dom:16.13.0-pre.94-kotlin-1.3.70")
-    implementation(npm("react", "16.13.1"))
-    implementation(npm("react-dom", "16.13.1"))
+    val reactVersion = "16.13.1"
+    implementation("org.jetbrains:kotlin-react:$reactVersion-$kotlinWrappersVersion")
+
+    implementation(npm("react", reactVersion))
+    implementation("org.jetbrains:kotlin-react-dom:$reactVersion-$kotlinWrappersVersion")
+    implementation(npm("react-dom", reactVersion))
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
 
-    implementation(npm("react-router-dom", "4.3.1"))
-    implementation(npm("@jetbrains/kotlin-react-router-dom", "4.3.1-pre.91"))
+    val reactRouterDomVersion = "5.1.2"
+    implementation("org.jetbrains:kotlin-react-router-dom:$reactRouterDomVersion-$kotlinWrappersVersion")
+    implementation(npm("react-router-dom", reactRouterDomVersion))
 
 }
 
