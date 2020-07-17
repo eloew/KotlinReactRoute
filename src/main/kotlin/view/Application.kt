@@ -2,14 +2,10 @@ package view
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.html.ButtonType
-import kotlinx.html.InputType
 import kotlinx.html.js.onClickFunction
 import react.*
 import react.dom.*
-import react.router.dom.hashRouter
-import react.router.dom.route
-import react.router.dom.routeLink
-import react.router.dom.switch
+import react.router.dom.*
 import view.components.*
 
 interface ApplicationProps : RProps {
@@ -53,12 +49,19 @@ class ApplicationComponent : RComponent<ApplicationProps, RState>() {
 
             div("container") {
                 switch {
-                    // route("/", Home::class, exact = true)
-                    route("/userList", FirstComponent::class, exact = true)
+                    route("/", exact = true) {
+                        br{}
+                        br{}
+                        navLink<RProps>("/userList") {
+                            +"User List"
+                        }
+                    }
+                    route("/userList", UserListComponent::class, exact = true)
                     route("/second", SecondComponent::class, exact = true)
                     route<DetailProps>("/detail/:userName") { props ->
                         detail(props.match.params.userName)
                     }
+                    redirect(from = "/detail/:userName", to = "/userList")
                 }
             }
         }
